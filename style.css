@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.one{
+    background-color: #ec407a;
+}
+.card-header{
+    color: #ec407a;
+    font-weight: bold;
+}
+.card-body{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn-primary{
+    background-color: #ec407a;
+    border: none;
+}
+.btn-primary:hover{
+    background-color: #d81b60;
+}
+.btn-primary:active{
+    background-color: #c2185b !important;
+}
