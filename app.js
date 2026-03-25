@@ -1,45 +1,59 @@
-var cardBg 
-function post(){
-    var title = document.getElementById("title")
-    var description = document.getElementById("description")
-    console.log(title.value , description.value);
-    var posts = document.getElementById("posts")
-   if(title.value.trim() && description.value.trim()){
-     posts.innerHTML += `
-     <div class="card mb-2">
-              <div class="card-header">~Post</div>
-              <div style="background-image:url(${cardBg})" class="card-body">
-                <figure>
-                  <blockquote class="blockquote">
-                    <p>
-                      ${title.value}
-                    </p>
-                  </blockquote>
-                  <figcaption class="blockquote-footer">
-                    ${description.value}
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-    `
-   }else{
-    Swal.fire({
-  icon: "error",
-  title: "Oops...",
-  text: "Title & description can't be empty!",
-});
-   }
-    title.value = ""
-    description.value = ""
+var editCard = null;
+
+function post() {
+  var title = document.getElementById("title");
+  var desc = document.getElementById("description");
+  var posts = document.getElementById("posts");
+
+  if (title.value.trim() != "" && desc.value.trim() != "") {
+
+    // EDIT MODE
+    if (editCard) {
+      editCard.children[1].children[0].innerText = title.value;
+      editCard.children[1].children[1].innerText = desc.value;
+      editCard = null;
+    } else {
+
+      var div = document.createElement("div");
+      div.className = "card bord";
+
+      div.innerHTML = `
+        <div class="card-header one">~Post</div>
+
+        <div class="card-body">
+          <p>${title.value}</p>
+          <small>${desc.value}</small>
+        </div>
+
+        <div class="post-actions bordt">
+          <button onclick="editPost(this)" class="btn btn-pink btn-sm">Edit</button>
+          <button onclick="deletePost(this)" class="btn btn-pink btn-sm">Delete</button>
+        </div>
+      `;
+
+      posts.appendChild(div);
+    }
+
+    title.value = "";
+    desc.value = "";
+  } else {
+    alert("Fill all fields!");
+  }
 }
-// function selectImg(src){
-//     cardBg = src
-//     console.log(src, event.target.classList);
-//     // event.target.className += " selectedImg"
-//     var bgImg = document.getElementsByClassName("bgImg")
-//     for(var i = 0; i<bgImg.length; i++){
-//         console.log(bgImg[i].className);
-//         bgImg[i].className = "bgImg"
-//     }
-//     event.target.classList.add("selectedImg")
-// }
+
+function deletePost(btn) {
+  var card = btn.parentNode.parentNode;
+  card.remove();
+}
+
+function editPost(btn) {
+  var card = btn.parentNode.parentNode;
+
+  var titleText = card.children[1].children[0].innerText;
+  var descText = card.children[1].children[1].innerText;
+
+  document.getElementById("title").value = titleText;
+  document.getElementById("description").value = descText;
+
+  editCard = card;
+}

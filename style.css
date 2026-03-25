@@ -1,28 +1,67 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:#f8bbd0;
 }
 
+/* NAVBAR */
+.navbar{
+    background:#ec407a;
+}
+.navbar a{
+    color:black !important;
+    font-weight:bold;
+}
+
+/* CARD DESIGN */
 .one{
-    background-color: #ec407a;
+    background:#ec407a;
+    color:white;
 }
-.card-header{
-    color: #ec407a;
-    font-weight: bold;
+.bord{
+    border:2px solid #ec407a;
 }
-.card-body{
-    background-repeat: no-repeat;
-    background-size: cover;
+.bordt{
+    border-top:2px solid #ec407a;
 }
-.btn-primary{
-    background-color: #ec407a;
-    border: none;
+
+/* INPUT */
+.form-control{
+    background:#f8bbd0;
+    border:2px solid #ec407a;
+    color:white;
 }
-.btn-primary:hover{
-    background-color: #d81b60;
+.form-control:focus{
+    background:#f8bbd0;
+    border:2px solid #ec407a;
+    box-shadow:none;
+    color:white;
 }
-.btn-primary:active{
-    background-color: #c2185b !important;
+
+/* BUTTONS */
+.btn-pink{
+    background:#ec407a;
+    color:white;
+    border:none;
+}
+.btn-pink:hover{
+    background:#d81b60;
+}
+
+/* POSTS GAP */
+.posts{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+/* EDIT DELETE BUTTON POSITION */
+.post-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    padding:10px;
 }
