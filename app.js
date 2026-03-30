@@ -1,59 +1,63 @@
-var editCard = null;
-
-function post() {
-  var title = document.getElementById("title");
-  var desc = document.getElementById("description");
-  var posts = document.getElementById("posts");
-
-  if (title.value.trim() != "" && desc.value.trim() != "") {
-
-    // EDIT MODE
-    if (editCard) {
-      editCard.children[1].children[0].innerText = title.value;
-      editCard.children[1].children[1].innerText = desc.value;
-      editCard = null;
-    } else {
-
-      var div = document.createElement("div");
-      div.className = "card bord";
-
-      div.innerHTML = `
-        <div class="card-header one">~Post</div>
-
-        <div class="card-body">
-          <p>${title.value}</p>
-          <small>${desc.value}</small>
-        </div>
-
-        <div class="post-actions bordt">
-          <button onclick="editPost(this)" class="btn btn-pink btn-sm">Edit</button>
-          <button onclick="deletePost(this)" class="btn btn-pink btn-sm">Delete</button>
-        </div>
-      `;
-
-      posts.appendChild(div);
+var cardBg 
+function deletePost(){
+  var card = event.target.parentNode.parentNode
+  card.remove()
+}
+function editPost(){
+    var card = event.target.parentNode.parentNode
+    var title =card.children[1].children[0].children[0].children[0].innerText
+    var description =card.children[1].children[0].children[1].innerText
+    document.getElementById("title").value = title
+    document.getElementById("description").value = description
+    card.remove()
+  console.log(title, description);
+}
+function post(){
+    var title = document.getElementById("title")
+    var description = document.getElementById("description")
+    console.log(title.value , description.value);
+    var posts = document.getElementById("posts")
+   if(title.value.trim() && description.value.trim()){
+     posts.innerHTML += `
+     <div class="card mb-2 one ">
+              <div class="card-header one">Madiha</div>
+              <div style="background-image:url(${cardBg})" class="card-body">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p>
+                      ${title.value}
+                    </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                    ${description.value}
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="ms-auto m-2">
+              <button onclick="editPost()" class="btn btn-success">Edit</button>
+              <button onclick="deletePost()" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+    `
+   }else{
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Title & description can't be empty!",
+});
+   }
+    title.value = ""
+    description.value = ""
+}
+function selectImg(src){
+    cardBg = src
+    console.log(src, event.target.classList);
+    // event.target.className += " selectedImg"
+    var bgImg = document.getElementsByClassName("bgImg")
+    for(var i = 0; i<bgImg.length; i++){
+        console.log(bgImg[i].className);
+        bgImg[i].className = "bgImg"
     }
-
-    title.value = "";
-    desc.value = "";
-  } else {
-    alert("Fill all fields!");
-  }
+    event.target.classList.add("selectedImg")
 }
 
-function deletePost(btn) {
-  var card = btn.parentNode.parentNode;
-  card.remove();
-}
-
-function editPost(btn) {
-  var card = btn.parentNode.parentNode;
-
-  var titleText = card.children[1].children[0].innerText;
-  var descText = card.children[1].children[1].innerText;
-
-  document.getElementById("title").value = titleText;
-  document.getElementById("description").value = descText;
-
-  editCard = card;
-}

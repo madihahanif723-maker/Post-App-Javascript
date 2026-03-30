@@ -1,63 +1,56 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Post App</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg px-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">Post App</a>
-
+            <a class="navbar-brand" href="#">PostApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+
+                    <li class="nav-item" id="logoutBtn">
+                        <button class="btn btn-danger ms-2" onclick="logout()">Logout</button>
+                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
-
-    <div class="container mt-4">
-        <div class="row">
-
-            <!-- FORM -->
-            <div class="col-md-4 card p-3 one bord">
-
-                <label>Title</label>
-                <input id="title" class="form-control mb-3">
-
-                <label>Description</label>
-                <textarea id="description" class="form-control mb-3"></textarea>
-
-                <div class="ms-auto">
-                    <button onclick="post()" class="btn btn-pink">Post</button>
-                </div>
-
-            </div>
-
-            <!-- POSTS -->
-            <div class="col-md-8">
-                <div id="posts" class="posts"></div>
-            </div>
-
+    <div class="container  loginCont">
+        <div class="login-form card " id="loginPost">
+            <h2>login</h2>
+            <form>
+                <label> <input id="name" type="text" placeholder="Enter your Name" required></label>
+                <label><br>
+                <label> <input id="email" type="email" placeholder="Enter Your Email" required></label>
+                <label><br>
+                    <input id="password" type="password" placeholder="Enter a password" required>
+                </label><br>
+                <label>
+                    <a href='post.html' target='_blank'><button type="button" onclick="login()">login</button></a>
+                    
+                </label><br>
+            </form>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
     <script src="app.js"></script>
-
 </body>
 
 </html>
